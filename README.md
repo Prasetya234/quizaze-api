@@ -18,7 +18,7 @@ contoh bagaimana membuat daftar hal-hal yang kamu perlukan untuk menggunakan per
 
 ### Installasi
 
-Contoh bagaimana Kamu dapat menginstruksikan audiens kamu untuk menginstal dan menyiapkan aplikasi. Template ini tidak bergantung pada dependensi atau layanan eksternal apa pun
+Sebelum memulai aplikasi ikuti panduan di bawah ini
 
 1. Clone repository
    ```sh
@@ -28,14 +28,25 @@ Contoh bagaimana Kamu dapat menginstruksikan audiens kamu untuk menginstal dan m
    ```sh
    mvn clean install
    ```
-3. IDE (IntelliJ IDEA Ultimate / Community)
+3. Database Postgresql (Ubuntu)
+     ```sh
+   sudo apt-get install postgresql postgresql-contrib
+   ```
+4. IDE (IntelliJ IDEA Ultimate / Community)
      ```sh
    https://www.jetbrains.com/idea/download/
    ```
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+### Database
 
+Buat database untuk memulai aplikasi
+ ```sh
+   CREATE DATABASE quizaze_database;
+   ```
 
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 
 <!-- CONTACT -->
