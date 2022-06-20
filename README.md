@@ -16,7 +16,7 @@ contoh bagaimana membuat daftar hal-hal yang kamu perlukan untuk menggunakan per
   https://maven.apache.org/install.html
   ```
 
-### Instalasi
+### Installasi
 
 Contoh bagaimana Kamu dapat menginstruksikan audiens kamu untuk menginstal dan menyiapkan aplikasi. Template ini tidak bergantung pada dependensi atau layanan eksternal apa pun
 
@@ -28,7 +28,10 @@ Contoh bagaimana Kamu dapat menginstruksikan audiens kamu untuk menginstal dan m
    ```sh
    mvn clean install
    ```
-
+3. IDE (IntelliJ IDEA Ultimate / Community)
+     ```sh
+   https://www.jetbrains.com/idea/download/
+   ```
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
