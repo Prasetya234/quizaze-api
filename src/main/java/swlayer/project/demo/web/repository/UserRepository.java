@@ -15,7 +15,7 @@ public interface UserRepository extends JpaRepository<User, String> {
     @Query(value = "SELECT a.* FROM users a WHERE a.id = :id AND a.school_id = :schoolId AND a.blocked = false", nativeQuery = true)
     Optional<User> findBySchoolId(String id, String schoolId);
     Page<User> findByGuestIsTrueAndBlockedIsFalse(Pageable paging);
-    Optional<User> findByUsernameAndBlockedIsFalse(String username);
+    Optional<User> findByUsernameAndBlockedIsFalse(String user);
 
     Optional<User> findByDevice(String device);
 }

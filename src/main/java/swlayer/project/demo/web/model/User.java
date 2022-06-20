@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 import swlayer.project.demo.enggine.auditing.DateConfig;
 
 import javax.persistence.*;
@@ -42,6 +43,7 @@ public class User extends DateConfig{
     private String device;
 
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     @Column(name = "avatar")
     private String avatar;
 
