@@ -1,5 +1,5 @@
 CREATE TABLE traffic_recap (
-    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    id INT PRIMARY KEY NOT NULL,
     visitors INT NOT NULL,
     this_date DATE NOT NULL,
     school_id VARCHAR(255),

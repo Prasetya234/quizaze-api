@@ -6,7 +6,7 @@ CREATE TABLE question (
     answer_true VARCHAR(255) NOT NULL,
     answer_list VARCHAR(255) NOT NULL,
     count_used INT NOT NULL,
-    publish TINYINT(1) NOT NULL,
+    publish BOOLEAN NOT NULL,
     school_id VARCHAR(255) NOT NULL,
     create_date TIMESTAMP,
     update_date TIMESTAMP

@@ -18,7 +18,7 @@ import java.util.List;
 @Data
 @Entity
 @ToString
-@Table(name = "user")
+@Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
 public class User extends DateConfig{

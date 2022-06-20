@@ -38,9 +38,9 @@ public class AuthenticateController {
         return  ResponseHelper.successResponse(modelmapper.map(userService.createAccountAdminSchool(schoolId, modelmapper.map(request, User.class)), UserResponse.class));
     }
 
-    @PostMapping("/signup-admin")
-    public CommonResponse<UserResponse> signupAdminUser(@RequestBody AdminRegistrasionRequest request) {
-        return  ResponseHelper.successResponse(modelmapper.map(userService.createAccountAdmin(modelmapper.map(request, User.class)), UserResponse.class));
-    }
+//    @PostMapping("/signup-admin")
+//    public CommonResponse<UserResponse> signupAdminUser(@RequestBody AdminRegistrasionRequest request) {
+//        return  ResponseHelper.successResponse(modelmapper.map(userService.createAccountAdmin(modelmapper.map(request, User.class)), UserResponse.class));
+//    }
 
 }
