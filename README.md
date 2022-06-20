@@ -40,7 +40,7 @@ Contoh bagaimana Kamu dapat menginstruksikan audiens kamu untuk menginstal dan m
 
 Prasetya Dhany Putra - [@xzy_prasetya](https://www.instagram.com/xzy_prasetya/) - putraprasetyadhany@gmail.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/Prasetya234/quizaze-api](https://github.com/Prasetya234/quizaze-api)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
