@@ -1,0 +1,1 @@
+ALTER TABLE user_score ADD COLUMN total_question_answer INT NOT NULL;
