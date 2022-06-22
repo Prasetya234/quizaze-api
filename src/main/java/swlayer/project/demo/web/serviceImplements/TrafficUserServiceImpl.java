@@ -99,14 +99,14 @@ public class TrafficUserServiceImpl extends HttpReqRespUtils implements TrafficU
 
 
     private TrafficUser updateUserDevice(String device) {
-        Optional<User> test = userRepository.findByDevice(device);
-        if (test.isPresent()) {
-            User user = updateDevice(test.get(), device);
-            TrafficUser traffic = trafficUserRepository.findByUserId(user.getId()).orElseThrow(() -> new NotFoundException("User id not found"));
-            traffic.setVisitors(traffic.getVisitors() + 1);
-            traffic.setJwtToken(authories(user, checkingAdmin(user.getRole().split(","))));
-            return trafficUserRepository.save(traffic);
-        }
+//        Optional<User> test = userRepository.findByDevice(device);
+//        if (test.isPresent()) {
+//            User user = updateDevice(test.get(), device);
+//            TrafficUser traffic = trafficUserRepository.findByUserId(user.getId()).orElseThrow(() -> new NotFoundException("User id not found"));
+//            traffic.setVisitors(traffic.getVisitors() + 1);
+//            traffic.setJwtToken(authories(user, checkingAdmin(user.getRole().split(","))));
+//            return trafficUserRepository.save(traffic);
+//        }
         return createUser(device);
     }
 

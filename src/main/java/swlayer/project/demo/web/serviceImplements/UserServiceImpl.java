@@ -85,6 +85,7 @@ public class UserServiceImpl extends HttpReqRespUtils implements UserService, Au
     public UserResponse updateSchool(String userId, String schoolId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("user id not found"));
         user.setSchool(schoolRepository.findById(schoolId).orElseThrow(() -> new NotFoundException("school id not found")));
+        user.setGuest(false);
         return modelMapper.map(userRepository.save(user), UserResponse.class);
     }
 
