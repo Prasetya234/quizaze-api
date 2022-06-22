@@ -92,9 +92,13 @@ public class TrafficUserServiceImpl extends HttpReqRespUtils implements TrafficU
     @Transactional(readOnly = true)
     @Override
     public Page<TrafficRekap> showTrafficRecap(int page, int size) {
-        Pageable paging = PageRequest.of(page, size);
-        var user = userRepository.findByUsernameAndBlockedIsFalse(authenticationFacade.getAuthentication().getName()).orElseThrow(() -> new BussinesException("Data recap cannot show in this user!"));
-        return trafficRecapRepository.findBySchoolId(user.getSchool().getId(), paging);
+        try {
+            Pageable paging = PageRequest.of(page, size);
+            var user = userRepository.findByUsernameAndBlockedIsFalse(authenticationFacade.getAuthentication().getName()).orElseThrow(() -> new BussinesException("Data recap cannot show in this user!"));
+            return trafficRecapRepository.findBySchoolId(user.getSchool().getId(), paging);
+        } catch(RuntimeException e) {
+            throw new BussinesException("Traffic List Empty");
+        }
     }
 
 
