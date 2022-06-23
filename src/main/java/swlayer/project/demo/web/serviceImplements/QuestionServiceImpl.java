@@ -21,6 +21,7 @@ import swlayer.project.demo.webrequest.dto.QuestionBody;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
@@ -167,9 +168,10 @@ public class QuestionServiceImpl extends AuthenticationFacade implements Questio
 
     @Transactional(readOnly = true)
     @Override
-    public Page<Materi> findAllMateri(int page, int size) {
+    public Page<Materi> findAllMateri(String materi, int page, int size) {
         Pageable paging = PageRequest.of(page, size);
-        return materiRepository.findAll(paging);
+//        return materiRepository.findAll(paging);
+        return materiRepository.searchMateri(materi, paging);
     }
 
     private static String[] shuffleArray(String[] ar) {

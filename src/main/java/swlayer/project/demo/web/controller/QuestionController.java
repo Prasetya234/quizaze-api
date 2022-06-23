@@ -13,6 +13,8 @@ import swlayer.project.demo.web.service.QuestionService;
 import swlayer.project.demo.webrequest.dto.CreateQuestion;
 import swlayer.project.demo.webrequest.util.Constants;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping(Constants.SWLAYEREndPoint.QUESTION)
 public class QuestionController {
@@ -34,9 +36,10 @@ public class QuestionController {
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'ADMIN_SCHOOL', 'USER')")
     @GetMapping("/materi")
-    public CommonResponse<Page<Materi>> getAllMateri(@RequestParam(defaultValue = "0") Integer page,
-                                                     @RequestParam(defaultValue = "10") Integer size) {
-        return ResponseHelper.successResponse(materiService.findAllMateri(page, size));
+    public CommonResponse<Page<Materi>> getAllMateri(
+            @RequestParam(name = "materi", required = false) String materi, @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "10") Integer size) {
+        return ResponseHelper.successResponse(materiService.findAllMateri(materi, page, size));
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'ADMIN_SCHOOL')")
