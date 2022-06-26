@@ -170,7 +170,6 @@ public class QuestionServiceImpl extends AuthenticationFacade implements Questio
     @Override
     public Page<Materi> findAllMateri(String materi, int page, int size) {
         Pageable paging = PageRequest.of(page, size);
-//        return materiRepository.findAll(paging);
         return materiRepository.searchMateri(materi, paging);
     }
 
