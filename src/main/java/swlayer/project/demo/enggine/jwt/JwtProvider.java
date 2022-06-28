@@ -50,7 +50,7 @@ public class JwtProvider {
         TokenUser token = new TokenUser();
         token.setUser(user);
         token.setToken(jwt);
-        token.setExpiredDate(new Date(System.currentTimeMillis() + 900000));
+        token.setExpiredDate(new Date(System.currentTimeMillis() + 1800000));
         tokenUserRepository.save(token);
         return jwt;
     }

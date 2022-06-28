@@ -66,7 +66,7 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
 
     private TokenUser refreshToken(String jwt) {
         TokenUser refreshToken = tokenUserRepository.findByToken(jwt);
-        refreshToken.setExpiredDate(new Date(System.currentTimeMillis() + 900000));
+        refreshToken.setExpiredDate(new Date(System.currentTimeMillis() + 1800000));
         return tokenUserRepository.save(refreshToken);
     }
 

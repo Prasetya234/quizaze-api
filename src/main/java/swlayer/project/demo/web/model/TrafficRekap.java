@@ -1,5 +1,6 @@
 package swlayer.project.demo.web.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,7 @@ public class TrafficRekap extends DateConfig {
     @Column(name = "visitors")
     private int visitors;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "school_id")
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private School school;
