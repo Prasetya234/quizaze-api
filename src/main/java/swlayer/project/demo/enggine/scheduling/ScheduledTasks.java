@@ -12,7 +12,6 @@ import swlayer.project.demo.web.repository.TrafficRecapRepository;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -31,13 +30,14 @@ public class ScheduledTasks {
     }
 
     // at 1:01 AM every day
-    @Scheduled(cron = "0 1 1 * * ?", zone = "Asia/Jakarta")
+//    cron = "0 1 1 * * ?"
+    @Scheduled(fixedRate = 1200000, zone = "Asia/Jakarta")
     public void getHeadValue() {
         int countSchoolTraffic = 0;
         try {
             List<School> listSchool = schoolRepository.findAll();
             for (School school: listSchool) {
-                var valid = trafficRecapRepository.findSchoolDate(school.getId(), getDate(new Date()));
+                var valid = trafficRecapRepository.findSchoolDate(school.getId(), new Date());
                 if (valid.isEmpty()) {
                     TrafficRekap create = new TrafficRekap();
                     create.setVisitors(0);

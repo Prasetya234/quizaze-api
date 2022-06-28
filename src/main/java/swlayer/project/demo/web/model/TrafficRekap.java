@@ -3,6 +3,7 @@ package swlayer.project.demo.web.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 import swlayer.project.demo.enggine.auditing.DateConfig;
 
 import javax.persistence.*;
@@ -16,8 +17,9 @@ import java.util.Date;
 public class TrafficRekap extends DateConfig {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
 
     @Column(name = "this_date")
     private Date thisDate;
