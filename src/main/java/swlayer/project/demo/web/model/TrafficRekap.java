@@ -1,5 +1,6 @@
 package swlayer.project.demo.web.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class TrafficRekap extends DateConfig {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "this_date")
     private Date thisDate;
 
