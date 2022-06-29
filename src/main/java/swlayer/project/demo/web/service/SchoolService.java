@@ -12,4 +12,6 @@ public interface SchoolService {
 
     Page<School> searchByShoolName(String name, int page, int size);
     Page<School> schoolList(int page, int size);
+
+    School selectRandomSchool();
 }

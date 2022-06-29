@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import swlayer.project.demo.enggine.data.AuthenticationFacade;
 import swlayer.project.demo.enggine.exception.BussinesException;
 import swlayer.project.demo.enggine.exception.NotFoundException;
 import swlayer.project.demo.web.model.School;
@@ -19,7 +20,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class SchoolServiceImpl implements SchoolService {
+public class SchoolServiceImpl extends AuthenticationFacade implements SchoolService {
 
     private SchoolRepository schoolRepository;
     private UserRepository userRepository;
@@ -61,5 +62,14 @@ public class SchoolServiceImpl implements SchoolService {
     public Page<School> schoolList(int page, int size) {
         Pageable paging = PageRequest.of(page, size);
         return schoolRepository.findAll(paging);
+    }
+
+    @Override
+    public School selectRandomSchool() {
+        User user = userRepository.findByUsernameAndBlockedIsFalse(getAuthentication().getName()).orElseThrow(() -> new BussinesException("User not found"));
+        School school = schoolRepository.selectRandomSchool().orElseThrow(() -> new NotFoundException("Random not running"));
+        user.setSchool(school);
+        userRepository.save(user);
+        return school;
     }
 }

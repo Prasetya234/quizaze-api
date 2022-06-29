@@ -52,4 +52,10 @@ public class SchoolRegistrasionController {
                                                       @RequestParam(defaultValue = "10") Integer size) {
         return ResponseHelper.successResponse(schoolService.searchByShoolName(name, page, size));
     }
+
+    @PreAuthorize("hasAuthority('USER')")
+    @GetMapping("/random")
+    public CommonResponse<School> selectSchoolRandom() {
+        return ResponseHelper.successResponse(schoolService.selectRandomSchool());
+    }
 }

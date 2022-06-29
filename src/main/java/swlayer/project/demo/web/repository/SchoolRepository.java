@@ -8,10 +8,14 @@ import org.springframework.stereotype.Repository;
 import swlayer.project.demo.web.model.School;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface SchoolRepository extends JpaRepository<School, String> {
 
     @Query(value = "SELECT s.* FROM school s WHERE lower(s.name) like lower(concat('%', concat(:name, '%')))", nativeQuery = true)
     Page<School> searchSchoolBy(String name, Pageable pageable);
+
+    @Query(value = "SELECT a.* FROM school a ORDER BY RANDOM() LIMIT 1")
+    Optional<School> selectRandomSchool();
 }
