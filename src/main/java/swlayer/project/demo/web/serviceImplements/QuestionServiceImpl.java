@@ -170,7 +170,9 @@ public class QuestionServiceImpl extends AuthenticationFacade implements Questio
     @Override
     public Page<Materi> findAllMateri(String materi, int page, int size) {
         Pageable paging = PageRequest.of(page, size);
-        return materiRepository.searchMateri(materi, paging);
+        var user = userRepository.findByUsernameAndBlockedIsFalse(getAuthentication().getName()).orElseThrow(() -> new NotFoundException("User id not  found"));
+
+        return materiRepository.searchMateri(materi, user.getSchool().getId(), paging);
     }
 
     private static String[] shuffleArray(String[] ar) {
