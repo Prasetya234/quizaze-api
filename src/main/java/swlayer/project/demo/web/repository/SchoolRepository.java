@@ -16,6 +16,6 @@ public interface SchoolRepository extends JpaRepository<School, String> {
     @Query(value = "SELECT s.* FROM school s WHERE lower(s.name) like lower(concat('%', concat(:name, '%')))", nativeQuery = true)
     Page<School> searchSchoolBy(String name, Pageable pageable);
 
-    @Query(value = "SELECT a.* FROM school a ORDER BY RANDOM() LIMIT 1", nativeQuery = true)
-    Optional<School> selectRandomSchool();
+    @Query(value = "SELECT a.* FROM school a WHERE a.id != :schoolId ORDER BY RANDOM() LIMIT 1", nativeQuery = true)
+    Optional<School> selectRandomSchool(String schoolId);
 }

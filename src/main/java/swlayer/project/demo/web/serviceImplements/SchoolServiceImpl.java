@@ -64,10 +64,11 @@ public class SchoolServiceImpl extends AuthenticationFacade implements SchoolSer
         return schoolRepository.findAll(paging);
     }
 
+    @Transactional
     @Override
     public School selectRandomSchool() {
         User user = userRepository.findByUsernameAndBlockedIsFalse(getAuthentication().getName()).orElseThrow(() -> new BussinesException("User not found"));
-        School school = schoolRepository.selectRandomSchool().orElseThrow(() -> new NotFoundException("Random not running"));
+        School school = schoolRepository.selectRandomSchool(user.getSchool().getId()).orElseThrow(() -> new NotFoundException("Random not running"));
         user.setSchool(school);
         userRepository.save(user);
         return school;
