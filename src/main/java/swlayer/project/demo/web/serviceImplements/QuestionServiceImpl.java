@@ -35,12 +35,14 @@ public class QuestionServiceImpl extends AuthenticationFacade implements Questio
     private UserRepository userRepository;
     private MateriRepository materiRepository;
     private SchoolRepository schoolRepository;
+    private UserAnswerRepository userAnswerRepository;
 
     @Autowired
-    public QuestionServiceImpl(UserScoreService userScoreService, QuestionRepository questionRepository, UserRepository userRepository, MateriRepository materiRepository, SchoolRepository schoolRepository) {
+    public QuestionServiceImpl(UserScoreService userScoreService, QuestionRepository questionRepository, UserRepository userRepository, MateriRepository materiRepository, SchoolRepository schoolRepository, UserAnswerRepository userAnswerRepository) {
         this.userScoreService = userScoreService;
         this.questionRepository = questionRepository;
         this.userRepository = userRepository;
+        this.userAnswerRepository = userAnswerRepository;
         this.materiRepository = materiRepository;
         this.schoolRepository = schoolRepository;
     }
@@ -98,8 +100,9 @@ public class QuestionServiceImpl extends AuthenticationFacade implements Questio
         var score =  userScoreService.getUserQUestion(auth.getId());
         if (score.isEmpty()){
          userScoreService.create(auth.getSchool(), auth, result, result.getQuestionTotal());
+        } else {
+            userScoreService.update(score.get().getId(), result.getQuestionTotal());
         }
-        userScoreService.update(score.get().getId(), result.getQuestionTotal());
         return getQuestion(materiId, false);
     }
 
@@ -171,8 +174,13 @@ public class QuestionServiceImpl extends AuthenticationFacade implements Questio
     public Page<Materi> findAllMateri(String materi, int page, int size) {
         Pageable paging = PageRequest.of(page, size);
         var user = userRepository.findByUsernameAndBlockedIsFalse(getAuthentication().getName()).orElseThrow(() -> new NotFoundException("User id not  found"));
-
-        return materiRepository.searchMateri(materi, user.getSchool().getId(), paging);
+        var matRes  = materiRepository.searchMateri(materi, user.getSchool().getId(), paging);
+        matRes.map(this::checkingAnswer);
+        return matRes;
+    }
+    private Materi checkingAnswer(Materi materi) {
+        materi.setAlreadyAnswer(userAnswerRepository.findByMateriId(materi.getId()).isPresent() ? true: false);
+        return materi;
     }
 
     private static String[] shuffleArray(String[] ar) {

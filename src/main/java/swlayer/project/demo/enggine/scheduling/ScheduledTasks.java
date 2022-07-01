@@ -31,12 +31,13 @@ public class ScheduledTasks {
 
     // at 1:01 AM every day
 //    cron = "0 1 1 * * ?"
-    @Scheduled(fixedRate = 1200000, zone = "Asia/Jakarta")
+//    fixedRate = 1200000
+    @Scheduled(cron = "0 1 1 * * ?", zone = "Asia/Jakarta")
     public void getHeadValue() {
         int countSchoolTraffic = 0;
         try {
             List<School> listSchool = schoolRepository.findAll();
-            for (School school: listSchool) {
+            for (School school : listSchool) {
                 var valid = trafficRecapRepository.findSchoolDate(school.getId(), new Date());
                 if (valid.isEmpty()) {
                     TrafficRekap create = new TrafficRekap();

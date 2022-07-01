@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 import swlayer.project.demo.enggine.auditing.DateConfig;
 
 import javax.persistence.*;
@@ -17,8 +18,9 @@ import javax.persistence.*;
 public class UserAnswer extends DateConfig {
 
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private int id;
+        @GeneratedValue(generator = "uuid")
+        @GenericGenerator(name = "uuid", strategy = "uuid2")
+        private String id;
 
         @Column(name = "answer", nullable = false)
         private String answer;

@@ -1,6 +1,6 @@
 CREATE TABLE user_answer (
-    id INT PRIMARY KEY,
-    is_correct SMALLINT NOT NULL,
+    id VARCHAR(255) PRIMARY KEY,
+    is_correct BOOLEAN NOT NULL,
     answer VARCHAR(255) NOT NULL,
     user_id VARCHAR(255) NOT NULL,
     question_id VARCHAR(255) NOT NULL,

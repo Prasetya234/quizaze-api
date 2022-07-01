@@ -47,6 +47,10 @@ public class Materi extends DateConfig {
     @ToString.Exclude
     @Transient
     private List<Question> question = new ArrayList<>();
+
+    @ToString.Exclude
+    @Transient
+    private boolean alreadyAnswer = false;
 }
 
 

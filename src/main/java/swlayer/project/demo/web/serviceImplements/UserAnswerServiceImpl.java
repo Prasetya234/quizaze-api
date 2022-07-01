@@ -39,7 +39,7 @@ public class UserAnswerServiceImpl extends AuthenticationFacade implements UserA
         if (op.isPresent()) throw new BussinesException("You has been already answer");
         User user = userRepository.findByUsernameAndBlockedIsFalse(getAuthentication().getName()).get();
         UserAnswer userAnswer = new UserAnswer();
-        userAnswer.setCorrect(answer.getAnswer().equals(quest.getAnswerTrue()));
+        userAnswer.setCorrect(answer.getAnswer().toLowerCase().equals(quest.getAnswerTrue().toLowerCase()));
         userAnswer.setAnswer(answer.getAnswer());
         userAnswer.setUser(user);
         userAnswer.setSchool(user.getSchool());
