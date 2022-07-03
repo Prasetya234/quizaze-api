@@ -179,7 +179,8 @@ public class QuestionServiceImpl extends AuthenticationFacade implements Questio
         return matRes;
     }
     private Materi checkingAnswer(Materi materi) {
-        materi.setAlreadyAnswer(userAnswerRepository.findByMateriId(materi.getId()).isPresent() ? true: false);
+        var user = userRepository.findByUsernameAndBlockedIsFalse(getAuthentication().getName()).orElseThrow(() -> new NotFoundException("User id not  found"));
+        materi.setAlreadyAnswer(userAnswerRepository.findByMateriId(materi.getId(), user.getId()).isPresent() ? true: false);
         return materi;
     }
 

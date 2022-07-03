@@ -12,6 +12,6 @@ public interface UserAnswerRepository extends JpaRepository<UserAnswer, String> 
 
     Optional<UserAnswer> findByQuestionId(String id);
 
-    @Query(value = "SELECT a.* FROM user_answer a WHERE a.materi_id = :materiId LIMIT 1", nativeQuery = true)
-    Optional<UserAnswer> findByMateriId(String materiId);
+    @Query(value = "SELECT a.* FROM user_answer a WHERE a.materi_id = :materiId AND a.user_id = :userId LIMIT 1", nativeQuery = true)
+    Optional<UserAnswer> findByMateriId(String materiId,String userId);
 }
