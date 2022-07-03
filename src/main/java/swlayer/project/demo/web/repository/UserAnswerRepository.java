@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface UserAnswerRepository extends JpaRepository<UserAnswer, String> {
 
-    Optional<UserAnswer> findByQuestionId(String id);
+    Optional<UserAnswer> findByQuestionIdAndUserId(String questionId, String userId);
 
     @Query(value = "SELECT a.* FROM user_answer a WHERE a.materi_id = :materiId AND a.user_id = :userId LIMIT 1", nativeQuery = true)
     Optional<UserAnswer> findByMateriId(String materiId,String userId);

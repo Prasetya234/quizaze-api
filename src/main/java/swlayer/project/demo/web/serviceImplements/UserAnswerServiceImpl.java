@@ -35,9 +35,10 @@ public class UserAnswerServiceImpl extends AuthenticationFacade implements UserA
     @Override
     public UserAnswer answerQuestion(String questionId, AnswerData answer) {
         var quest = questionRepository.findById(questionId).orElseThrow(() -> new NotFoundException("Question id not found"));
-        var op = userAnswerRepository.findByQuestionId(questionId);
-        if (op.isPresent()) throw new BussinesException("You has been already answer");
         User user = userRepository.findByUsernameAndBlockedIsFalse(getAuthentication().getName()).get();
+        var op = userAnswerRepository.findByQuestionIdAndUserId(questionId, user.getId());
+        if (op.isPresent()) throw new BussinesException("You has been already answer");
+
         UserAnswer userAnswer = new UserAnswer();
         userAnswer.setCorrect(answer.getAnswer().toLowerCase().equals(quest.getAnswerTrue().toLowerCase()));
         userAnswer.setAnswer(answer.getAnswer());
