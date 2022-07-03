@@ -32,7 +32,7 @@ public class ScheduledTasks {
     // at 1:01 AM every day
 //    cron = "0 1 1 * * ?"
 //    fixedRate = 1200000
-    @Scheduled(cron = "0 1 1 * * ?", zone = "Asia/Jakarta")
+    @Scheduled(fixedRate = 1200000, zone = "Asia/Jakarta")
     public void getHeadValue() {
         int countSchoolTraffic = 0;
         try {
