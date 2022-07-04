@@ -19,6 +19,6 @@ public interface TrafficRecapRepository extends JpaRepository<TrafficRekap, Stri
     @Query(value = "SELECT  a.* FROM traffic_recap a WHERE  a.school_id = :school ORDER BY a.this_date DESC LIMIT 1", nativeQuery = true)
     Optional<TrafficRekap> findByTrafficSchool(String school);
 
-    @Query(value = "SELECT  b.* FROM traffic_recap b WHERE  b.school_id = :schl ORDER BY b.this_date", nativeQuery = true)
+    @Query(value = "SELECT  b.* FROM traffic_recap b WHERE  b.school_id = :schl ORDER BY b.this_date DESC", nativeQuery = true)
     Page<TrafficRekap> findBySchoolId(String schl, Pageable pageable);
 }
