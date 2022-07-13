@@ -61,7 +61,7 @@ public class UserScoreServiceImpl implements UserScoreService {
     @Transactional(readOnly = true)
     @Override
     public Optional<UserScore> getUserQUestion(String userId, String materiId) {
-        return userScoreRepository.findByUserIdAndMatriId(userId, materiId);
+        return userScoreRepository.findByUserIdAndMateriId(userId, materiId);
     }
 }
 

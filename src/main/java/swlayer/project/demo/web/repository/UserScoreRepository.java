@@ -12,6 +12,4 @@ public interface UserScoreRepository extends JpaRepository<UserScore, String> {
 
     Optional<UserScore> findByUserIdAndMateriId(String userId, String materiId);
     Optional<UserScore> findByUserId(String userId);
-    Optional<UserScore> findByUserIdAndMatriId(String userId, String materiId);
-
 }
