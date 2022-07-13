@@ -14,5 +14,5 @@ public interface UserScoreService {
     List<UserScore> getDataScore(String userId);
     UserScore getDataScoreMateri(String userId, String materiId);
 
-    Optional<UserScore> getUserQUestion(String userId);
+    Optional<UserScore> getUserQUestion(String userId, String materiId);
 }

@@ -97,7 +97,7 @@ public class QuestionServiceImpl extends AuthenticationFacade implements Questio
     public Materi showMateriUser(String materiId) {
         var auth = userRepository.findByUsernameAndBlockedIsFalse(getAuthentication().getName()).orElseThrow(() -> new BussinesException("User cannot use this question"));
         Materi result = materiRepository.findById(materiId).orElseThrow(() -> new NotFoundException("Matri id not found"));
-        var score =  userScoreService.getUserQUestion(auth.getId());
+        var score =  userScoreService.getUserQUestion(auth.getId(), result.getId());
         if (score.isEmpty()){
          userScoreService.create(auth.getSchool(), auth, result, result.getQuestionTotal());
         } else {
