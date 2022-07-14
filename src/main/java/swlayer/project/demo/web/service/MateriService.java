@@ -5,16 +5,17 @@ import swlayer.project.demo.web.model.Materi;
 import swlayer.project.demo.webrequest.dto.CreateQuestion;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface MateriService {
     Materi create(String schoolId, CreateQuestion question);
     Materi showMateriUser(String materiId);
-
     Materi showMateriAdmin(String materiId);
-
     Materi update(String materiId, CreateQuestion question);
     Materi getQuestion(String materiId, boolean admin);
+
+    Map<String, String> deleteMateri(String materiId);
 
     Page<Materi> findAllMateri(String materi, int page, int size);
 }

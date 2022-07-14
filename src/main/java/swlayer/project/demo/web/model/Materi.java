@@ -39,6 +39,9 @@ public class Materi extends DateConfig {
     @Column(name = "teacher")
     private String teacher;
 
+    @Column(name = "active")
+    private boolean active;
+
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "school_id")

@@ -9,7 +9,7 @@ import swlayer.project.demo.web.model.Materi;
 
 @Repository
 public interface MateriRepository extends JpaRepository<Materi, String> {
-    @Query(value = "SELECT a.* FROM materi a WHERE (lower(a.materi) like lower(concat('%', concat(:materi, '%'))) OR :materi IS NULL) AND a.school_id = :schoolId", nativeQuery = true)
+    @Query(value = "SELECT a.* FROM materi a WHERE (lower(a.materi) like lower(concat('%', concat(:materi, '%'))) OR :materi IS NULL) AND a.school_id = :schoolId AND a.active = true", nativeQuery = true)
     Page<Materi> searchMateri(String materi,String schoolId,  Pageable pageable);
 
 }

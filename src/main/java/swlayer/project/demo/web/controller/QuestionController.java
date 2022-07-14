@@ -13,6 +13,7 @@ import swlayer.project.demo.web.service.QuestionService;
 import swlayer.project.demo.webrequest.dto.CreateQuestion;
 import swlayer.project.demo.webrequest.util.Constants;
 
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -46,6 +47,12 @@ public class QuestionController {
     @PutMapping("/{materi_id}/admin")
     public CommonResponse<Materi> updateMateri(@PathVariable("materi_id") String materiId, @RequestBody CreateQuestion question) {
         return ResponseHelper.successResponse(materiService.update(materiId, question));
+    }
+
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'ADMIN_SCHOOL')")
+    @DeleteMapping("/{materi_id}/admin")
+    public CommonResponse<Map<String, String>> updateMateri(@PathVariable("materi_id") String materiId) {
+        return ResponseHelper.successResponse(materiService.deleteMateri(materiId));
     }
 
     @PreAuthorize("hasAuthority('USER')")

@@ -19,10 +19,7 @@ import swlayer.project.demo.web.service.UserScoreService;
 import swlayer.project.demo.webrequest.dto.CreateQuestion;
 import swlayer.project.demo.webrequest.dto.QuestionBody;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
@@ -167,6 +164,16 @@ public class QuestionServiceImpl extends AuthenticationFacade implements Questio
         Materi result = materiRepository.findById(materiId).orElseThrow(() -> new NotFoundException("Matri id not found"));
         result.setQuestion(admin ? getAllQuestionAdmin(result.getId()) : getAllQuestionUser(result.getId()));
         return result;
+    }
+
+    @Override
+    public Map<String, String> deleteMateri(String materiId) {
+        Materi materi = materiRepository.findById(materiId).orElseThrow(() -> new NotFoundException("Materi id not found"));
+        materi.setActive(false);
+        materiRepository.save(materi);
+        Map<String, String> obj = new HashMap<>();
+        obj.put("deleted", "true");
+        return obj;
     }
 
     @Transactional(readOnly = true)
