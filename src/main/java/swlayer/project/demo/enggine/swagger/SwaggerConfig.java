@@ -40,12 +40,12 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfo(
-                "API for Swlayer Aplication",
-                "backend Swlayer aplication",
+                "API Quizaze Application",
+                "Backend for Quizaze application",
                 "1.0.0",
-                "Excellent",
+                "",
                 "putraprasetyadhany@gmail.com",
-                "-",
+                "Coding School Telogosari",
                 "-"
         );
     }
