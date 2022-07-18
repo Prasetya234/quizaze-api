@@ -53,6 +53,12 @@ public class SchoolRegistrasionController {
         return ResponseHelper.successResponse(schoolService.searchByShoolName(name, page, size));
     }
 
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN', 'ADMIN_SCHOOL')")
+    @GetMapping("/{id}")
+    public CommonResponse<School> findSchoolById(@RequestParam(name = "id") String id) {
+        return ResponseHelper.successResponse(schoolService.findSchoolById(id));
+    }
+
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/random")
     public CommonResponse<School> selectSchoolRandom() {

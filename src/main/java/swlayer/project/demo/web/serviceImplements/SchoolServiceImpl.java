@@ -17,6 +17,7 @@ import swlayer.project.demo.web.repository.UserRepository;
 import swlayer.project.demo.web.service.SchoolService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -48,6 +49,12 @@ public class SchoolServiceImpl extends AuthenticationFacade implements SchoolSer
         edit.setName(school.getName());
         edit.setUpdateBy(user.getUsername());
         return schoolRepository.save(edit);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public School findSchoolById(String id) {
+        return schoolRepository.findById(id).orElseThrow(() -> new NotFoundException("School id " + id + " not found"));
     }
 
     @Transactional(readOnly = true)
