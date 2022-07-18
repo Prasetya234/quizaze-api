@@ -54,8 +54,8 @@ public class SchoolRegistrasionController {
     }
 
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN', 'ADMIN_SCHOOL')")
-    @GetMapping("/{id}")
-    public CommonResponse<School> findSchoolById(@RequestParam(name = "id") String id) {
+    @GetMapping("/school/{id}")
+    public CommonResponse<School> findSchoolById(@PathVariable("id") String id) {
         return ResponseHelper.successResponse(schoolService.findSchoolById(id));
     }
 
