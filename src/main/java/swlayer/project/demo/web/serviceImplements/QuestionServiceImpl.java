@@ -84,6 +84,7 @@ public class QuestionServiceImpl extends AuthenticationFacade implements Questio
         materi.setMateri(question.getMateri());
         materi.setTeacher(question.getTeacher());
         materi.setDescription(question.getDescription());
+        materi.setActive(true);
         materi.setQuestionTotal(0);
         materi.setSchool(schoolRepository.findById(schoolId).orElseThrow(() -> new NotFoundException("School id not found")));
         return materiRepository.save(materi);
