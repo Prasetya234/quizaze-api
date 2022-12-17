@@ -12,7 +12,7 @@ public interface UserService {
     UserResponse updateSchool(String userId, String schoolId);
     UserAuthenticateResponse authenticate(UserAuthenticate user);
 
-    User createAccountAdminSchool(String schoolId, User user);
+    User createAccountAdminSchool( User user);
 
     User createAccountAdmin(User user);
 }

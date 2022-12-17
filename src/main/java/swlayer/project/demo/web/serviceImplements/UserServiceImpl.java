@@ -114,14 +114,13 @@ public class UserServiceImpl extends HttpReqRespUtils implements UserService, Au
 
     @Transactional
     @Override
-    public User createAccountAdminSchool(String schoolId, User user) {
+    public User createAccountAdminSchool(User user) {
         if (userRepository.findByUsernameAndBlockedIsFalse(user.getUsername()).isPresent()) throw new BussinesException("Username already axist");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(roleSwlayer.ADMIN_SCHOOL);
         user.setGuest(false);
         user.setBlocked(false);
         user.setDevice(getClientIpAddressIfServletRequestExist());
-        user.setSchool(schoolRepository.findById(schoolId).orElseThrow(() -> new NotFoundException("School id not found")));
         return userRepository.save(user);
     }
 

@@ -33,9 +33,9 @@ public class AuthenticateController {
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'ADMIN_SCHOOL')")
-    @PostMapping("/signup-admin-school/{school_id}")
-    public CommonResponse<UserResponse> signupAdmin(@PathVariable("school_id")String schoolId, @RequestBody AdminRegistrasionRequest request) {
-        return  ResponseHelper.successResponse(modelmapper.map(userService.createAccountAdminSchool(schoolId, modelmapper.map(request, User.class)), UserResponse.class));
+    @PostMapping("/signup-admin-school")
+    public CommonResponse<UserResponse> signupAdmin(@RequestBody AdminRegistrasionRequest request) {
+        return  ResponseHelper.successResponse(modelmapper.map(userService.createAccountAdminSchool( modelmapper.map(request, User.class)), UserResponse.class));
     }
 
     @PostMapping("/signup-admin")
