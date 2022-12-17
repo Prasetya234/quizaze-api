@@ -57,7 +57,7 @@ public class QuestionServiceImpl extends AuthenticationFacade implements Questio
             create.setImage(result.getImage());
             create.setPublish(true);
             create.setCountUsed(0);
-            create.setAnswerList(answerList.stream().map(Object::toString).collect(Collectors.joining(",")));
+            create.setAnswerList(String.join(",", answerList));
             create.setSchool(schoolRepository.findById(schoolId).orElseThrow(() -> new NotFoundException("School id not found")));
             create.setMateri(materi);
             soal.add(create);
